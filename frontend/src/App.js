@@ -10,8 +10,7 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
-
-// testing ssh git :D
+import CartScreen from './screens/CartScreen';
 
 function App() {
 
@@ -45,6 +44,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
             </Routes>
           </Container>
         </main>
