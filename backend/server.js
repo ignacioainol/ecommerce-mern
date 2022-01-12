@@ -3,8 +3,11 @@ import data from './data.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
+import morgan from 'morgan';
+
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI).then(() => {
@@ -14,9 +17,15 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 })
 
 const app = express();
+
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //routes
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));
