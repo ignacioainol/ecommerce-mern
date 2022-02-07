@@ -7,30 +7,38 @@ import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
-const SigninScreen = () => {
+const SignupScreen = () => {
     const navigate = useNavigate();
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
     const redirect = redirectInUrl ? redirectInUrl : '/';
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
 
     const submitHabdler = async (e) => {
         e.preventDefault();
+        if (password !== confirmPassword) {
+            toast.error('Las contraseñas no coinciden');
+            return;
+        }
+
         try {
-            const { data } = await axios.post('/api/users/signin', {
+            const { data } = await axios.post('/api/users/signup', {
+                name,
                 email,
-                password
+                password,
             });
             ctxDispatch({ type: 'USER_SIGNIN', payload: data });
             localStorage.setItem('userInfo', JSON.stringify(data));
             navigate(redirect || '/');
-        } catch (error) {
-            toast.error(getError(error));
+        } catch (err) {
+            toast.error(getError(err));
         }
     }
 
@@ -44,28 +52,40 @@ const SigninScreen = () => {
     return (
         <Container className="small-container">
             <Helmet>
-                Sign In
+                Registro
             </Helmet>
-            <h1 className='my-3'>Sign In</h1>
+            <h1 className='my-3'>Registro</h1>
             <Form onSubmit={submitHabdler}>
+                <Form.Group className='mb-3' controlId='name'>
+                    <Form.Label>Nombre</Form.Label>
+                    <Form.Control required onChange={(e) => setName(e.target.value)} />
+                </Form.Group>
+
                 <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type='email' required onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
+
                 <Form.Group className='mb-3' controlId='password'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' required onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
+
+                <Form.Group className='mb-3' controlId='confirmPassword'>
+                    <Form.Label>Confirmar Password</Form.Label>
+                    <Form.Control type='password' required onChange={(e) => setConfirmPassword(e.target.value)} />
+                </Form.Group>
+
                 <div className="mb-3">
                     <Button type="submit">Sign In</Button>
                 </div>
                 <div className="mb-3">
-                    No tienes cuenta? {' '}
-                    <Link to={`/signup?redirect=${redirect}`}>Create your Account</Link>
+                    Ya tienes cuenta? {' '}
+                    <Link to={`/signin?redirect=${redirect}`}>Inicia Sesión</Link>
                 </div>
             </Form>
         </Container>
     )
 }
 
-export default SigninScreen 
+export default SignupScreen 
