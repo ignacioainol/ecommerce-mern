@@ -7,6 +7,17 @@ app.get('/api/products', (req, res) => {
     res.send(data.products);
 });
 
+app.get('/api/product/slug/:slug', (req, res) => {
+    const product = data.products.find(x => x.slug === req.params.slug);
+    if (product) {
+        res.send(product);
+    } else {
+        res.status(400).send({
+            message: 'Product doesn\'t exists'
+        });
+    }
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
