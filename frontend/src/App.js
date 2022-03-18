@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <header className='testingGit'>
+        <header>
           <Link to="/">amazona</Link>
         </header>
 
