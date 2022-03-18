@@ -25,7 +25,6 @@ export const HomeScreen = () => {
                         </div>
                     ))
                 }
-                {/* testing git */}
             </div>
         </div>
     )
