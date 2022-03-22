@@ -50,7 +50,7 @@ export const HomeScreen = () => {
             <Helmet>
                 <title>Liquor Store</title>
             </Helmet>
-            <h1>Featured Products</h1>
+            <h1>Licores Destacados</h1>
 
             <div className="products">
                 {
