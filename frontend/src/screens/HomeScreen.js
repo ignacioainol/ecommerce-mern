@@ -48,7 +48,7 @@ export const HomeScreen = () => {
     return (
         <div>
             <Helmet>
-                <title>Amazona</title>
+                <title>Liquor Store</title>
             </Helmet>
             <h1>Featured Products</h1>
 
