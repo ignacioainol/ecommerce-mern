@@ -18,6 +18,7 @@ import { ProductScreen } from './screens/ProductScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
 import { PaymentMethodScreen } from './screens/PaymentMethodScreen';
+import { PlaceOrderScreen } from './screens/PlaceOrderScreen';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
               </LinkContainer>
               <Nav className="me-auto">
                 <Link to="/cart" className='nav-link'>
-                  <i class="fas fa-shopping-cart"></i> Cart
+                  <i className="fas fa-shopping-cart"></i> Cart
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg="danger">
                       {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -90,6 +91,7 @@ function App() {
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/shipping" element={<ShippingAddressScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
             </Routes>
           </Container>
         </main>
