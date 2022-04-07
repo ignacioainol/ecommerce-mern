@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import morgan from 'morgan';
+import mercadopago from 'mercadopago';
 
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
@@ -15,7 +16,11 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log('connected to db')
 }).catch(err => {
     console.log(err.message)
-})
+});
+
+mercadopago.configure({
+    access_token: process.env.MERCADOPAGO_ACCESS_TOKEN
+});
 
 const app = express();
 
