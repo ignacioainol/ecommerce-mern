@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
-import orderRouter from './routes/orderrRoutes.js';
+import orderRouter from './routes/orderRoutes.js';
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI).then(() => {
