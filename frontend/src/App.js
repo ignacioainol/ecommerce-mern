@@ -1,13 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  Navbar,
-  Container,
-  Nav,
-  Badge,
-  NavDropdown
-} from 'react-bootstrap';
+import { Navbar, Container, Nav, Badge, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
@@ -40,7 +34,7 @@ function App() {
       <ToastContainer position='bottom-center' limit={1} />
       <div className='d-flex flex-column site-container'>
         <header>
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>Liquor Store</Navbar.Brand>
