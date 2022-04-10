@@ -44,9 +44,9 @@ const SigninScreen = () => {
     return (
         <Container className="small-container">
             <Helmet>
-                Sign In
+                <title>Iniciar Sesión</title>
             </Helmet>
-            <h1 className='my-3'>Sign In</h1>
+            <h1 className='my-3'>Iniciar Sesión</h1>
             <Form onSubmit={submitHabdler}>
                 <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
@@ -61,7 +61,7 @@ const SigninScreen = () => {
                 </div>
                 <div className="mb-3">
                     No tienes cuenta? {' '}
-                    <Link to={`/signup?redirect=${redirect}`}>Create your Account</Link>
+                    <Link to={`/signup?redirect=${redirect}`}>Registrate</Link>
                 </div>
             </Form>
         </Container>

@@ -37,14 +37,14 @@ const CartScreen = () => {
     return (
         <div>
             <Helmet>
-                <title>Shopping Cart</title>
+                <title>Carrito</title>
             </Helmet>
-            <h1>Shopping Cart</h1>
+            <h1>Carro de Compras</h1>
             <Row>
                 <Col md={8}>
                     {cartItems.length === 0 ? (
                         <MessageBox>
-                            Cart is Empty. <Link to="/">Go Shopping</Link>
+                            Carro vacío. <Link to="/">Añadir Productos</Link>
                         </MessageBox>
                     ) :
                         (
@@ -111,7 +111,7 @@ const CartScreen = () => {
                                             onClick={checkoutHandler}
                                             disabled={cartItems.length === 0}
                                         >
-                                            Proceed to Checkout
+                                            Pagar
                                         </Button>
                                     </div>
                                 </ListGroup.Item>

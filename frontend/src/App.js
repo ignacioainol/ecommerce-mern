@@ -18,6 +18,7 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
 import axios from 'axios';
 import { SearchBox } from './components/SearchBox';
+import { SearchScreen } from './screens/SearchScreen';
 
 function App() {
 
@@ -58,7 +59,7 @@ function App() {
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
-                <i className="fas fa-bars"></i>
+                <i className="fas fa-list"></i>
               </Button>
               <LinkContainer to="/">
                 <Navbar.Brand>Liquor Store</Navbar.Brand>
@@ -94,7 +95,7 @@ function App() {
                     </NavDropdown>
                   ) : (
                     <Link className="nav-link" to="/signin">
-                      Sign In
+                      Iniciar Sesión
                     </Link>
                   )}
                 </Nav>
@@ -138,6 +139,7 @@ function App() {
               <Route path="/order/:id" element={<OrderScreen />} />
               <Route path="/orderhistory" element={<OrderHistoryScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/search" element={<SearchScreen />} />
             </Routes>
           </Container>
         </main>

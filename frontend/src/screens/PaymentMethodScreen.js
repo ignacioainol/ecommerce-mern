@@ -33,9 +33,9 @@ export const PaymentMethodScreen = () => {
             <CheckoutSteps step1 step2 step3></CheckoutSteps>
             <div className="container small-container">
                 <Helmet>
-                    <title>Payment Method</title>
+                    <title>Método de Pago</title>
                 </Helmet>
-                <h1 className='my-4'>Payment Method</h1>
+                <h1 className='my-4'>Método de Pago</h1>
                 <Form onSubmit={submitHandler}>
                     <div className="mb-3">
                         <Form.Check
@@ -51,10 +51,10 @@ export const PaymentMethodScreen = () => {
                     <div className="mb-3">
                         <Form.Check
                             type="radio"
-                            id="Stripe"
-                            label="Stripe"
-                            value="Stripe"
-                            checked={paymentMethodName === 'Stripe'}
+                            id="Mercadopago"
+                            label="Mercadopago"
+                            value="Mercadopago"
+                            checked={paymentMethodName === 'Mercadopago'}
                             onChange={(e) => setPaymentMethod(e.target.value)}
                         />
                     </div>

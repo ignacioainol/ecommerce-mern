@@ -82,9 +82,9 @@ export const PlaceOrderScreen = () => {
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
             <Helmet>
-                <title>Preview Order</title>
+                <title>Vista Previa</title>
             </Helmet>
-            <h1 className="my-3">Preview Order</h1>
+            <h1 className="my-3">Vista Previa</h1>
             <Row>
                 <Col md={8}>
                     <Card className="mb-3">
@@ -174,7 +174,7 @@ export const PlaceOrderScreen = () => {
                                             onClick={placeOrderHandler}
                                             disabled={cart.cartItems.length === 0}
                                         >
-                                            Place Order
+                                            Realizar Pedido
                                         </Button>
                                     </div>
                                     {loading && <LoadingBox></LoadingBox>}
