@@ -19,6 +19,9 @@ import { ProfileScreen } from './screens/ProfileScreen';
 import axios from 'axios';
 import { SearchBox } from './components/SearchBox';
 import { SearchScreen } from './screens/SearchScreen';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { DashboardScreen } from './screens/DashboardScreen';
+import { AdminRoute } from './components/AdminRoute';
 
 function App() {
 
@@ -98,6 +101,22 @@ function App() {
                       Iniciar Sesión
                     </Link>
                   )}
+                  {userInfo && userInfo.isAdmin && (
+                    <NavDropdown title="Admin" id="admin-nav-dropdown">
+                      <LinkContainer to="/admin/dashboard">
+                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/productlist">
+                        <NavDropdown.Item>Productos</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/orderlist">
+                        <NavDropdown.Item>Órdenes</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/userlist">
+                        <NavDropdown.Item>Usuarios</NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -136,9 +155,26 @@ function App() {
               <Route path="/shipping" element={<ShippingAddressScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
-              <Route path="/order/:id" element={<OrderScreen />} />
-              <Route path="/orderhistory" element={<OrderHistoryScreen />} />
-              <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/order/:id" element={
+                <ProtectedRoute>
+                  <OrderScreen />
+                </ProtectedRoute>
+              } />
+              <Route path="/orderhistory" element={
+                <ProtectedRoute>
+                  <OrderHistoryScreen />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <ProfileScreen />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/dashboard" element={
+                <AdminRoute>
+                  <DashboardScreen />
+                </AdminRoute>
+              } />
               <Route path="/search" element={<SearchScreen />} />
             </Routes>
           </Container>
