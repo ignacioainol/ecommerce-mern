@@ -30,6 +30,27 @@ productRouter.get('/admin',
             pages: Math.ceil(countProducts / pageSize)
         });
     })
+);
+
+productRouter.post('/',
+    isAuth, isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const newProduct = new Product({
+            name: `sample name ${Date.now()}`,
+            slug: `sample-name- ${Date.now()}`,
+            image: '/images/p1.jpg',
+            price: 0,
+            category: 'sample category',
+            brand: 'sample brand',
+            description: 'description test',
+            countInStock: 0,
+            rating: 0,
+            numReviews: 0
+        });
+
+        const product = await newProduct.save();
+        res.send({ message: 'Producto Creado', product });
+    })
 )
 
 productRouter.get(
