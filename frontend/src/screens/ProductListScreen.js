@@ -41,7 +41,7 @@ export const ProductListScreen = () => {
     });
 
     const navigate = useNavigate();
-    const { search, pathname } = useLocation();
+    const { search } = useLocation();
     const sp = new URLSearchParams(search);
     const page = sp.get('page') || 1;
     const { state } = useContext(Store);
@@ -118,6 +118,7 @@ export const ProductListScreen = () => {
                                 <th>PRECIO</th>
                                 <th>CATEGORÍA</th>
                                 <th>MARCA</th>
+                                <th>ACCIÓN</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -128,6 +129,15 @@ export const ProductListScreen = () => {
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
                                     <td>{product.brand}</td>
+                                    <td>
+                                        <Button
+                                            type="button"
+                                            variant="light"
+                                            onClick={() => navigate(`/admin/product/${product._id}`)}
+                                        >
+                                            Editar
+                                        </Button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
