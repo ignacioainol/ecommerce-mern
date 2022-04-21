@@ -7,6 +7,7 @@ import morgan from 'morgan';
 import mercadopago from 'mercadopago';
 
 import seedRouter from './routes/seedRoutes.js';
+import uploadRouter from './routes/uploadRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
@@ -33,6 +34,7 @@ app.get(`/api/keys/paypal`, (req, res) => {
 })
 
 //routes
+app.use('/api/upload', uploadRouter);
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
