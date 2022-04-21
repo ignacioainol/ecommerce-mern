@@ -25,6 +25,12 @@ orderRouter.post('/', isAuth, expressAsyncHandler(async (req, res) => {
     res.status(201).send({ message: 'New Order Created', order });
 }));
 
+orderRouter.get('/', isAuth, isAdmin, async (req, res) => {
+    const orders = await Order.find().populate('user', 'name');
+    res.send(orders);
+})
+
+
 orderRouter.get('/summary', isAuth,
     isAdmin, expressAsyncHandler(async (req, res) => {
         const orders = await Order.aggregate([
