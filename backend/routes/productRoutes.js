@@ -10,6 +10,24 @@ productRouter.get('/', async (req, res) => {
     res.send(products);
 });
 
+productRouter.delete('/:id', isAuth, isAdmin,
+
+    expressAsyncHandler(
+        async (req, res) => {
+            const productId = req.params.id;
+            const product = await Product.findById(productId);
+
+            if (product) {
+                res.send(`llego aca :D eliminar producto ${productId}`);
+                await product.remove();
+                res.send({ message: 'Producto Eliminado' });
+
+            } else {
+                res.status(404).send({ message: 'Producto no encontrado' });
+            }
+        })
+);
+
 const PAGE_SIZE = 5;
 
 productRouter.get('/admin',
