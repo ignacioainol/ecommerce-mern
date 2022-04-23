@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { getError } from '../utils';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import LoadingBox from '../components/LoadingBox';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -29,13 +30,13 @@ export function ProfileScreen() {
     const [name, setName] = useState(userInfo?.name || '');
     const [email, setEmail] = useState(userInfo?.email || '');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [, setConfirmPassword] = useState('');
 
     useEffect(() => {
         if (!userInfo) {
             navigate('/signin');
         }
-    }, [userInfo])
+    }, [userInfo, navigate])
 
 
     const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
@@ -72,6 +73,7 @@ export function ProfileScreen() {
 
     return (
         <div className="container small-container">
+            {loadingUpdate && <LoadingBox />}
             <Helmet>
                 <title>User Profile</title>
             </Helmet>
@@ -101,7 +103,7 @@ export function ProfileScreen() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="password">
+                <Form.Group className="mb-3" controlId="password2">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
                         type="password"
