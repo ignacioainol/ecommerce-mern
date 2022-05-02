@@ -198,7 +198,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className='text-center'>All Right Reserved</div>
+          <div className='text-center'>Todos los Derechos Reservados. </div>
         </footer>
       </div>
     </BrowserRouter >

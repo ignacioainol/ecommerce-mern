@@ -8,6 +8,7 @@ import { Store } from '../Store';
 import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
 import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { currency } from '../utils';
 import { toast } from 'react-toastify';
 
 
@@ -135,17 +136,17 @@ export const OrderScreen = () => {
     ) : (
         <div>
             <Helmet>
-                <title>Order {orderId}</title>
+                <title>Orden {orderId}</title>
             </Helmet>
-            <h1 className='my-3'>Order {orderId}</h1>
+            <h1 className='my-3'>Orden Id {orderId}</h1>
             <Row>
                 <Col md={8}>
                     <Card className="mb-3">
                         <Card.Body>
-                            <Card.Title>Shipping</Card.Title>
+                            <Card.Title>Envío</Card.Title>
                             <Card.Text>
-                                <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                                <strong>Address: </strong> {order.shippingAddress.address},
+                                <strong>Nombre:</strong> {order.shippingAddress.fullName} <br />
+                                <strong>Dirección: </strong> {order.shippingAddress.address},
                                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                                 ,{order.shippingAddress.country}
                             </Card.Text>
@@ -154,29 +155,29 @@ export const OrderScreen = () => {
                                     Delivered at {order.deliveredAt}
                                 </MessageBox>
                             ) : (
-                                <MessageBox variant="danger">Not Delivered</MessageBox>
+                                <MessageBox variant="danger">No Entregado</MessageBox>
                             )}
                         </Card.Body>
                     </Card>
                     <Card className="mb-3">
                         <Card.Body>
-                            <Card.Title>Payment</Card.Title>
+                            <Card.Title>Pago</Card.Title>
                             <Card.Text>
-                                <strong>Method:</strong> {order.paymentMethod}
+                                <strong>Metodo Pago:</strong> {order.paymentMethod}
                             </Card.Text>
                             {order.isPaid ? (
                                 <MessageBox variant="success">
-                                    Paid at {order.paidAt}
+                                    Pagado el {order.paidAt}
                                 </MessageBox>
                             ) : (
-                                <MessageBox variant="danger">Not Paid</MessageBox>
+                                <MessageBox variant="danger">No Pagado</MessageBox>
                             )}
                         </Card.Body>
                     </Card>
 
                     <Card className="mb-3">
                         <Card.Body>
-                            <Card.Title>Items</Card.Title>
+                            <Card.Title>Productos</Card.Title>
                             <ListGroup variant="flush">
                                 {order.orderItems.map((item) => (
                                     <ListGroup.Item key={item._id}>
@@ -192,7 +193,7 @@ export const OrderScreen = () => {
                                             <Col md={3}>
                                                 <span>{item.quantity}</span>
                                             </Col>
-                                            <Col md={3}>${item.price}</Col>
+                                            <Col md={3}>{ currency(item.price) }</Col>
                                         </Row>
                                     </ListGroup.Item>
                                 ))}
@@ -203,33 +204,33 @@ export const OrderScreen = () => {
                 <Col md={4}>
                     <Card className="mb-3">
                         <Card.Body>
-                            <Card.Title>Order Summary</Card.Title>
+                            <Card.Title>Resumen del pedido</Card.Title>
                             <ListGroup variant="flush">
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>Items</Col>
-                                        <Col>${order.itemsPrice.toFixed(2)}</Col>
+                                        <Col>Productos</Col>
+                                        <Col>{ currency(order.itemsPrice)}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>Shipping</Col>
-                                        <Col>${order.shippingPrice.toFixed(2)}</Col>
+                                        <Col>Envío</Col>
+                                        <Col>{ currency(order.shippingPrice)}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Tax</Col>
-                                        <Col>${order.taxPrice.toFixed(2)}</Col>
+                                        <Col>{ currency(order.taxPrice) }</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>
-                                            <strong> Order Total</strong>
+                                            <strong>Total</strong>
                                         </Col>
                                         <Col>
-                                            <strong>${order.totalPrice.toFixed(2)}</strong>
+                                            <strong>{ currency(order.totalPrice)}</strong>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
