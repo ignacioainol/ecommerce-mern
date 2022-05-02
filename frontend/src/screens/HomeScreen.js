@@ -6,6 +6,8 @@ import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import QRCode from "react-qr-code";
+
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -51,6 +53,10 @@ export const HomeScreen = () => {
                 <title>Liquor Store</title>
             </Helmet>
             <h1>Licores Destacados</h1>
+
+            {/* <div style={{ background: 'white', padding: '16px' }}>
+                <QRCode value="hey" level="M" title="test qr" />
+            </div> */}
 
             <div className="products">
                 {

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { getError } from '../utils'
 import axios from 'axios'
 import LoadingBox from '../components/LoadingBox'
+import { currency } from '../utils';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -89,30 +90,30 @@ export const PlaceOrderScreen = () => {
                 <Col md={8}>
                     <Card className="mb-3">
                         <Card.Body>
-                            <Card.Title>Shipping</Card.Title>
+                            <Card.Title>Envío</Card.Title>
                             <Card.Text>
-                                <strong>Name: </strong> {cart.shippingAddress.fullName} <br />
-                                <strong>Address: </strong> {cart.shippingAddress.address},
+                                <strong>Nombre: </strong> {cart.shippingAddress.fullName} <br />
+                                <strong>Dirección: </strong> {cart.shippingAddress.address},
                                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                                 {cart.shippingAddress.country}
                             </Card.Text>
-                            <Link to="/shipping">Edit</Link>
+                            <Link to="/shipping">Editar</Link>
                         </Card.Body>
                     </Card>
 
                     <Card className='mb-3'>
                         <Card.Body>
-                            <Card.Title>Payment</Card.Title>
+                            <Card.Title>Pago</Card.Title>
                             <Card.Text>
-                                <strong>Method:</strong> {cart.paymentMethod}
+                                <strong>Metodo:</strong> {cart.paymentMethod}
                             </Card.Text>
-                            <Link to="/payment">Edit</Link>
+                            <Link to="/payment">Editar</Link>
                         </Card.Body>
                     </Card>
 
                     <Card className='mb-3'>
                         <Card.Body>
-                            <Card.Title>Items</Card.Title>
+                            <Card.Title>Productos</Card.Title>
                             <ListGroup variant="flush">
                                 {cart.cartItems.map((item) => (
                                     <ListGroup.Item key={item._id}>
@@ -124,12 +125,12 @@ export const PlaceOrderScreen = () => {
                                                 <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                             </Col>
                                             <Col md={3}><span>{item.quantity}</span></Col>
-                                            <Col md={3}>${item.price}</Col>
+                                            <Col md={3}>{ currency( item.price )}</Col>
                                         </Row>
                                     </ListGroup.Item>
                                 ))}
                             </ListGroup>
-                            <Link to="/cart">Edit</Link>
+                            <Link to="/cart">Editar</Link>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -137,24 +138,24 @@ export const PlaceOrderScreen = () => {
                 <Col md={4}>
                     <Card>
                         <Card.Body>
-                            <Card.Title>Order Summary</Card.Title>
+                            <Card.Title>Resumen del Pedido</Card.Title>
                             <ListGroup variant="flush">
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Items</Col>
-                                        <Col>${cart.itemsPrice.toFixed(2)}</Col>
+                                        <Col>{ currency( cart.itemsPrice )}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>Shipping</Col>
-                                        <Col>${cart.shippingPrice.toFixed(2)}</Col>
+                                        <Col>Envío</Col>
+                                        <Col>{ currency(cart.shippingPrice )}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Tax</Col>
-                                        <Col>${cart.taxPrice.toFixed(2)}</Col>
+                                        <Col>{ currency(cart.taxPrice )}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
@@ -163,7 +164,7 @@ export const PlaceOrderScreen = () => {
                                             <strong> Order Total</strong>
                                         </Col>
                                         <Col>
-                                            <strong>${cart.totalPrice.toFixed(2)}</strong>
+                                            <strong>{ currency(cart.totalPrice)}</strong>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>

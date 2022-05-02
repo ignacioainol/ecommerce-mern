@@ -18,7 +18,7 @@ export default function ShippingAddressScreen() {
     const [address, setAddress] = useState(shippingAddress.address || '');
     const [city, setCity] = useState(shippingAddress.city || '');
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
-    const [country, setCountry] = useState(shippingAddress.country || '');
+    const [country, setCountry] = useState(shippingAddress.country || 'Chile');
 
     useEffect(() => {
         if (!userInfo) {
@@ -78,7 +78,7 @@ export default function ShippingAddressScreen() {
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId="city">
-                        <Form.Label>City</Form.Label>
+                        <Form.Label>Ciudad</Form.Label>
                         <Form.Control
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
@@ -93,16 +93,17 @@ export default function ShippingAddressScreen() {
                             required />
                     </Form.Group>
 
-                    <Form.Group className='mb-3' controlId="country">
+                    <Form.Group className='mb-3' controlId="country" style={{'display': 'none'}}>
                         <Form.Label>País</Form.Label>
                         <Form.Control
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
                             required />
                     </Form.Group>
+
                     <div className="mb-3">
                         <Button variant="primary" type="submit">
-                            Continue
+                            Continuar
                         </Button>
                     </div>
                 </Form>
