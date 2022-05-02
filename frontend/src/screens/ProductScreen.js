@@ -6,7 +6,7 @@ import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { getError } from '../utils';
+import { currency, getError } from '../utils';
 import { Store } from '../Store';
 
 const reducer = (state, action) => {
@@ -94,9 +94,9 @@ export const ProductScreen = () => {
                                         >
                                         </Rating>
                                     </ListGroup.Item>
-                                    <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                                    <ListGroup.Item>Precio: {currency(product.price)}</ListGroup.Item>
                                     <ListGroup.Item>
-                                        Description:
+                                        Descripción:
                                         <p>{product.description}</p>
                                     </ListGroup.Item>
                                 </ListGroup>
@@ -107,8 +107,8 @@ export const ProductScreen = () => {
                                         <ListGroup variant="flush">
                                             <ListGroup.Item>
                                                 <Row>
-                                                    <Col>Price</Col>
-                                                    <Col>${product.price}</Col>
+                                                    <Col>Precio</Col>
+                                                    <Col>{currency(product.price)}</Col>
                                                 </Row>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
@@ -126,7 +126,7 @@ export const ProductScreen = () => {
                                             {product.countInStock > 0 && (
                                                 <div className="d-grid">
                                                     <Button onClick={addToCartHandler} variant="primary">
-                                                        Add to Cart
+                                                        Añadir al Carro
                                                     </Button>
                                                 </div>
                                             )}

@@ -1,12 +1,21 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
-import { isAdmin, isAuth } from '../utils.js';
+import { currency, isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-    const products = await Product.find();
+    let products = await Product.find();
+
+    // const productCurrency = products.map(product => {
+    //     return {
+    //         ...product.toJSON(),
+    //         price: currency(product.price)
+    //     };
+    // })
+
+
     res.send(products);
 });
 

@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { Store } from '../Store';
+import { currency } from '../utils';
 import Rating from './Rating';
 
 const Product = ({ product }) => {
@@ -37,7 +38,7 @@ const Product = ({ product }) => {
                     <Card.Title>{product.name}</Card.Title>
                 </Link>
                 <Rating rating={product.rating} numReviews={product.numReviews} />
-                <Card.Text>${product.price}</Card.Text>
+                <Card.Text>{currency(product.price)}</Card.Text>
                 {product.countInStock === 0 ? (
                     <Button variant="light" disabled>
                         Out of stock

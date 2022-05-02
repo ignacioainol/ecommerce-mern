@@ -3,8 +3,10 @@ import React, { useContext } from 'react'
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
+import { currency } from '../utils';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
+
 
 const CartScreen = () => {
     const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -77,7 +79,7 @@ const CartScreen = () => {
                                                         <i className="fas fa-plus-circle"></i>
                                                     </Button>{' '}
                                                 </Col>
-                                                <Col md={3}>${item.price}</Col>
+                                                <Col md={3}>{currency(item.price)}</Col>
                                                 <Col md={2}>
                                                     <Button
                                                         onClick={() => removeItemHandler(item)}
@@ -98,8 +100,7 @@ const CartScreen = () => {
                                 <ListGroup.Item>
                                     <h3>
                                         Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                                        items) : $
-                                        {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                                        items) : {currency(cartItems.reduce((a, c) => a + c.price * c.quantity, 0))}
                                     </h3>
                                 </ListGroup.Item>
 

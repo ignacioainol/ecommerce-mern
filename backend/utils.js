@@ -40,3 +40,11 @@ export const isAdmin = (req, res, next) => {
         res.status(401).send({ message: 'Token de Admin inválido' });
     }
 }
+
+// export const currency = (number) => {
+//     return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(number);
+// };
+
+export const currency = function (number) {
+    return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(number);
+};
